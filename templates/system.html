@@ -1,0 +1,135 @@
+<html>
+  <head>
+    <title>Docker Toolkit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <style>
+    body {
+        background-color:turquoise;
+    }
+    
+    h1{
+      text-align: center;
+      color: black;
+      font-size: 30pt;
+      text-decoration: underline;
+    }
+    
+    h2, p {
+        color: black;
+        text-align: center;
+    }
+    h3 {
+        text-align: center;
+        color: black;
+        text-align: center;
+    }  
+.nav-tabs {
+  background: turquoise; /* turquoise */
+  padding: 8px 24px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  list-style: none;
+}
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:active,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:visited {
+  text-decoration: none;
+}
+
+.nav-tabs .nav-link {
+  color: #111;
+  border: none;
+  margin: 0 8px;
+  font-size: 1.1em;
+  font-weight: 800;
+  padding: 10px 28px;
+  background: transparent;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: white !important;
+  color: black !important; /* Optional: keeps text black */
+  border: 2px solid black !important; /* Optional: adds black border */
+}
+
+
+.nav-tabs .nav-link:hover {
+  background: #e0f7fa;
+  color: #161616;
+}
+
+.output {
+  background: #222;
+  color: #eee;
+  font-family: 'Inconsolata', 'monospace', monospace;
+  font-size: 1rem;
+  padding: 1em;
+  border-radius: 8px;
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 400px;
+  margin: 20px 0;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-button {
+  padding: 1em 2.5em;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  background: turquoise;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.big-button:hover {
+  background: black;
+  color: turquoise;
+}
+
+
+    </style>
+  <body>
+    <H1>Docker Tools - System Info</H1>
+    <ul class="nav nav-tabs">
+    <li class="nav-item">
+    <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'index' %}active{% endif %}">PS</a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('images') }}" class="nav-link {% if active_page == 'images' %}active{% endif %}">Images</a>
+  </li>
+   <li class="nav-item">
+    <a href="{{ url_for('df') }}" class="nav-link {% if active_page == 'df' %}active{% endif %}">DF</a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('system') }}" class="nav-link {% if active_page == 'system' %}active{% endif %}">Prune</a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('start') }}" class="nav-link {% if active_page == 'start' %}active{% endif %}">Start</a>
+  </li>
+  <li class="nav-item">
+    <a href="{{ url_for('stop') }}" class="nav-link {% if active_page == 'stop' %}active{% endif %}">Stop</a>
+  </li>
+
+</ul>
+<form method="POST" action="/system">
+  <div class="center-container">
+  <button class="big-button" type=""submit>Run Docker System Info</button>
+</div>
+</form>
+
+  <pre class="output">{{ output }}</pre>
+
+
+  </body>
+</html>
