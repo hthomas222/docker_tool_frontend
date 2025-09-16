@@ -45,18 +45,33 @@ def df():
 def start():
     output = ""
     if request.method == 'POST':
-        command = subprocess.run(
-            ["docker", "system", "info"], 
-            capture_output=True, text=True
-        )
-        output = command.stdout + command.stderr
-        if command.returncode != 0:
-            output = f"Error (code {command.returncode}):\n{output}"
+        container_id = request.form.get('container_id')
+        if container_id:
+            command = subprocess.run(
+                ["docker", "start", container_id],
+                capture_output=True,
+                text=True
+            )
+            output = command.stdout + command.stderr
+            if command.returncode != 0:
+                output = f"Error (code {command.returncode}):\n{output}"
     return render_template('start.html', active_page='start', output=output)
 
 
 @app.route('/stop', methods=['GET', 'POST'])
 def stop():
+    output = ""
+    if request.method == 'POST':
+        container_id = request.form.get('container_id')
+        if container_id:
+            command = subprocess.run(
+                ["docker", "stop", container_id],
+                capture_output=True,
+                text=True
+            )
+            output = command.stdout + command.stderr
+            if command.returncode != 0:
+                output = f"Error (code {command.returncode}):\n{output}"
     return render_template('stop.html', active_page='stop')
 
 
