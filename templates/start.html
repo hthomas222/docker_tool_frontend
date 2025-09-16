@@ -63,6 +63,39 @@
   color: #161616;
 }
 
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-button {
+  padding: 1em 2.5em;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  background: turquoise;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.big-button:hover {
+  background: black;
+  color: turquoise;
+}
+
+input[type="text"] {
+  width: 300px;      /* wider */
+  height: 2.5em;     /* taller */
+  padding: 0.5em 1em;
+  font-size: 1.2rem; /* bigger text */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+
     </style>
   <body>
     <H1>Docker Tools - Start</H1>
@@ -85,9 +118,15 @@
   <li class="nav-item">
     <a href="{{ url_for('stop') }}" class="nav-link {% if active_page == 'stop' %}active{% endif %}">Stop</a>
   </li>
-  
 
 </ul>
-<p>NO</p>
+
+<div class="center-container">
+  <form method="post">
+    <input type="text" name="container_id" placeholder="Container ID" required />
+    <button type="submit" class="big-button">Start Container</button>
+  </form>
+</div>
+
   </body>
 </html>
