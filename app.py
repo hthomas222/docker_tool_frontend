@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import subprocess
 
 
@@ -12,7 +12,7 @@ def index():
         output = command.stdout + command.stderr
         if command.returncode != 0:
             output = f"Error (code {command.returncode}):\n{output}"
-    return render_template('index.html', context=output)
+    return render_template('index.html', active_page='index', context=output)
 
 
 @app.route('/images', methods=['GET', 'POST'])
@@ -89,5 +89,5 @@ def system():
     return render_template('system.html', active_page='system', output=output)
 
 
-if __name__ == '__main__':
-     app.run(port=5000, debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
